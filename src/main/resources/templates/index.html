@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../static/js/common/axios.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron">
+                <h1 class="display-3"></h1>
+                <p class="lead">密码管理查询</p>
+                <hr class="my-2">
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#myModal">添加新的密码管理</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="webname">请输入网站名：</label>
+                <input type="text"
+                  class="form-control" name="webname" id="webname" aria-describedby="helpId" placeholder="">
+                <small id="helpId" class="form-text text-muted">网站名称</small>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">请输入网站用户名：</label>
+                <input type="text"
+                  class="form-control" name="username" id="username" aria-describedby="helpId" placeholder="">
+                <small id="helpId" class="form-text text-muted">用户名称</small>
+            </div>
+            <div class="form-group" id="showpassword" style="display: none;">
+                <label for="password">密码</label>
+                <input type="text"
+                  class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="">
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onclick="search()">查询</button>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新的密码管理
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">请输入网站名称：</label>
+                        <input type="text"
+                          class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted">用户名称</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">请输入网站url：</label>
+                        <input type="text"
+                          class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted">用户名称</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">请输入密码：</label>
+                        <input type="text"
+                          class="form-control" name="" id="userame" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted">用户名称</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</body>
+
+<script>
+    //查询密码
+    function search(){
+        let webname = $("#webname").val();
+        let username = $("#username").val();
+        if(webname == ""){
+            $(function () {
+                alert("网站名称不能为空");
+            });
+            return false;
+        }
+        if(username == ""){
+            $(function () {
+                alert("用户名不能为空");
+            });
+            return false;
+        }
+        let params = {
+            webname = "",
+            username = ""
+        }
+        //发送查询请求
+        axios.post(url,params).then(resp => {
+
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+</script>
+</html>
